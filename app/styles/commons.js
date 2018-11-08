@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { Icon } from 'semantic-ui-react';
 export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -21,4 +21,8 @@ export const PreviewWrapper = styled.div`
 
 export const Seperator = styled.div`
   border: 2px solid gray;
+`;
+
+export const IconAsButton = styled(Icon)`
+  cursor: pointer;
 `;
