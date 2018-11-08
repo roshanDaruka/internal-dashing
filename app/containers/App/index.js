@@ -33,7 +33,7 @@ export default function App() {
       {/* <Header /> */}
       <Switch>
         {/* <Route exact path="/" component={HomePage} /> */}
-        <Route exact path="/create-taxonomy" component={CreateTaxonomy} />
+        <Route exact path="/" component={CreateTaxonomy} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       {/* <Footer /> */}
