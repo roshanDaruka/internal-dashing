@@ -10,6 +10,7 @@ import {
   STEP_BACK,
   STEP_CHANGE,
   SAVE_NODE_NAME,
+  SAVE_CHILD_NODE_NAME,
 } from './constants';
 
 export function defaultAction() {
@@ -43,6 +44,16 @@ export function saveNodeName(nodeType, name, index) {
     type: SAVE_NODE_NAME,
     nodeType,
     name,
+    index,
+  };
+}
+
+export function saveChildNodeName(nodeType, name, parentIndex, index) {
+  return {
+    type: SAVE_CHILD_NODE_NAME,
+    nodeType,
+    name,
+    parentIndex,
     index,
   };
 }

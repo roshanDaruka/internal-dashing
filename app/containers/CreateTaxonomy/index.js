@@ -24,6 +24,7 @@ import {
   stepBack,
   stepChange,
   saveNodeName,
+  saveChildNodeName,
 } from './actions';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -52,6 +53,7 @@ export class CreateTaxonomy extends React.Component {
                 createTaxanomyData={createTaxanomyData}
                 stepChange={this.props.stepChange}
                 saveNodeName={this.props.saveNodeName}
+                saveChildNodeName={this.props.saveChildNodeName}
               />
             </Grid.Column>
             <Grid.Column width={2} />
@@ -68,6 +70,7 @@ CreateTaxonomy.propTypes = {
   stepBack: PropTypes.func,
   saveNodeName: PropTypes.func,
   stepChange: PropTypes.func,
+  saveChildNodeName: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -81,6 +84,8 @@ function mapDispatchToProps(dispatch) {
     stepBack: () => dispatch(stepBack()),
     saveNodeName: (nodeType, name, index) =>
       dispatch(saveNodeName(nodeType, name, index)),
+    saveChildNodeName: (nodeType, name, parentIndex, index) =>
+      dispatch(saveChildNodeName(nodeType, name, parentIndex, index)),
   };
 }
 

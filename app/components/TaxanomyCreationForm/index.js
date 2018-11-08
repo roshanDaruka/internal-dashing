@@ -44,6 +44,7 @@ class TaxanomyCreationForm extends React.PureComponent {
               <Tab.Pane>
                 <TaxanomyEditTaxanomyDefinitionForm
                   taxanomyCreationForm={createTaxanomyData.taxanomyCreationForm}
+                  saveChildNodeName={this.props.saveChildNodeName}
                   saveNodeName={this.props.saveNodeName}
                 />
               </Tab.Pane>
@@ -67,6 +68,7 @@ TaxanomyCreationForm.propTypes = {
   changeTaxanomyName: PropTypes.func,
   stepChange: PropTypes.func,
   createTaxanomyData: PropTypes.instanceOf(Map),
+  saveChildNodeName: PropTypes.func,
   saveNodeName: PropTypes.func,
 };
 

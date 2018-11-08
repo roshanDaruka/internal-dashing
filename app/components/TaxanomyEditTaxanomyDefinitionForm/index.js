@@ -24,11 +24,13 @@ class TaxanomyEditTaxanomyDefinitionForm extends React.PureComponent {
                 key={node.nodeName}
                 index={index}
                 saveNodeName={this.props.saveNodeName}
+                saveChildNodeName={this.props.saveChildNodeName}
               />
             ))}
           <TaxanomyDefinitionCard
             saveNodeName={this.props.saveNodeName}
             node={{}}
+            saveChildNodeName={this.props.saveChildNodeName}
             index={null}
           />
         </Grid.Column>
@@ -42,6 +44,7 @@ class TaxanomyEditTaxanomyDefinitionForm extends React.PureComponent {
 
 TaxanomyEditTaxanomyDefinitionForm.propTypes = {
   taxanomyCreationForm: PropTypes.object,
+  saveChildNodeName: PropTypes.func,
   saveNodeName: PropTypes.func,
 };
 
