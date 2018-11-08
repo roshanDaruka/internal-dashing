@@ -11,6 +11,7 @@ import {
   STEP_BACK,
   STEP_CHANGE,
   SAVE_NODE_NAME,
+  SAVE_CHILD_NODE_NAME,
 } from './constants';
 
 export const initialState = fromJS({
@@ -40,8 +41,31 @@ function createTaxonomyReducer(state = initialState, action) {
       if (action.index === null)
         return state.setIn(
           ['taxanomyCreationForm', 'nodes'],
+          state.getIn(['taxanomyCreationForm', 'nodes']).push(
+            fromJS({
+              nodeType: action.nodeType,
+              nodeName: action.name,
+              childNodes: [],
+            }),
+          ),
+        );
+      return state.setIn(
+        ['taxanomyCreationForm', 'nodes', action.index],
+        fromJS({ nodeType: action.nodeType, nodeName: action.name }),
+      );
+    }
+
+    case SAVE_CHILD_NODE_NAME: {
+      if (action.index === null)
+        return state.setIn(
+          ['taxanomyCreationForm', 'nodes', action.parentIndex, 'childNodes'],
           state
-            .getIn(['taxanomyCreationForm', 'nodes'])
+            .getIn([
+              'taxanomyCreationForm',
+              'nodes',
+              action.parentIndex,
+              'childNodes',
+            ])
             .push(fromJS({ nodeType: action.nodeType, nodeName: action.name })),
         );
       return state.setIn(

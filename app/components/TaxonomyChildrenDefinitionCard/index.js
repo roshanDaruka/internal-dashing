@@ -1,19 +1,17 @@
 /**
  *
- * TaxanomyDefinitionCard
+ * TaxonomyChildrenDefinitionCard
  *
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
-import { Grid, Header } from 'semantic-ui-react';
-// import NodeAdditionForm from 'components/NodeAdditionForm/Loadable';
-import NodeDescriptionCard from 'components/NodeDescriptionCard';
-// import AddNewNode from 'components/AddNewNode';
+import { Grid } from 'semantic-ui-react';
 import NewNodeSection from 'components/NewNodeSection';
+import ChildNodeDescriptionCard from 'components/ChildNodeDescriptionCard';
 /* eslint-disable react/prefer-stateless-function */
-class TaxanomyDefinitionCard extends React.PureComponent {
+class TaxonomyChildrenDefinitionCard extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,7 +38,12 @@ class TaxanomyDefinitionCard extends React.PureComponent {
   };
 
   onSaveNodeName = (type, name) => {
-    this.props.saveNodeName(type, name, this.props.index);
+    this.props.saveChildNodeName(
+      type,
+      name,
+      this.props.parentIndex,
+      this.props.index,
+    );
     this.setState({ showForm: false });
   };
 
@@ -49,10 +52,7 @@ class TaxanomyDefinitionCard extends React.PureComponent {
     return (
       <Grid>
         <Grid.Row>
-          <Grid.Column width={1} padded={false}>
-            <Header as="h6">A</Header>
-          </Grid.Column>
-          <Grid.Column width={15}>
+          <Grid.Column width={16}>
             {isEmpty ? (
               <NewNodeSection
                 showForm={this.state.showForm}
@@ -62,12 +62,11 @@ class TaxanomyDefinitionCard extends React.PureComponent {
                 onSaveNodeName={this.onSaveNodeName}
               />
             ) : (
-              <NodeDescriptionCard
+              <ChildNodeDescriptionCard
                 node={this.props.node}
                 onSaveNodeName={this.onSaveNodeName}
                 nodeOptions={this.state.options}
                 index={this.props.index}
-                saveChildNodeName={this.props.saveChildNodeName}
               />
             )}
             {/* <ChildNodeDescriptionCard /> */}
@@ -79,11 +78,11 @@ class TaxanomyDefinitionCard extends React.PureComponent {
   }
 }
 
-TaxanomyDefinitionCard.propTypes = {
+TaxonomyChildrenDefinitionCard.propTypes = {
   node: PropTypes.object,
-  saveNodeName: PropTypes.func,
+  parentIndex: PropTypes.number,
   index: PropTypes.number,
   saveChildNodeName: PropTypes.func,
 };
 
-export default TaxanomyDefinitionCard;
+export default TaxonomyChildrenDefinitionCard;

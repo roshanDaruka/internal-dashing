@@ -13,7 +13,7 @@ class NodeAdditionForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      type: props.type,
+      type: props.type || 'Product Listing Node',
       name: props.name,
     };
   }
@@ -44,7 +44,7 @@ class NodeAdditionForm extends React.PureComponent {
             </Button>
           </Grid.Column> */}
           <Grid.Column>
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit} size="mini">
               <Form.Group>
                 {/* <Label htmlFor="taxanomyName">
             <Header as="h5">Taxanomy Name</Header>
@@ -54,7 +54,6 @@ class NodeAdditionForm extends React.PureComponent {
                   options={this.props.options}
                   button
                   name="type"
-                  size="mini"
                   onChange={this.handleChange}
                 />
                 <Form.Input
@@ -63,13 +62,15 @@ class NodeAdditionForm extends React.PureComponent {
                   fluid={false}
                   value={this.state.name}
                   name="name"
+                  size="big"
                   onChange={this.handleChange}
-                  size="mini"
                   placeholder="Add Node Name"
                 />
               </Form.Group>
-              <Form.Button type="submit" content="Save" />
-              <Form.Button content="Cancel" onClick={this.handleCancel} />
+              <Form.Group>
+                <Form.Button type="submit" content="Save" />
+                <Form.Button content="Cancel" onClick={this.handleCancel} />
+              </Form.Group>
             </Form>
           </Grid.Column>
         </Grid.Row>

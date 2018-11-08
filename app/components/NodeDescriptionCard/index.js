@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 import { Grid, Header, Button } from 'semantic-ui-react';
 import NodeAdditionForm from 'components/NodeAdditionForm';
+import TaxonomyChildrenDefinitionCard from 'components/TaxonomyChildrenDefinitionCard';
 /* eslint-disable react/prefer-stateless-function */
 class NodeDescriptionCard extends React.PureComponent {
   constructor(props) {
@@ -33,6 +34,7 @@ class NodeDescriptionCard extends React.PureComponent {
         handleCancel={this.onFormCancel}
         handleSubmit={this.props.onSaveNodeName}
         options={this.props.nodeOptions}
+        name={node.nodeName}
       />
     ) : (
       <Grid>
@@ -49,6 +51,22 @@ class NodeDescriptionCard extends React.PureComponent {
             </Button>
           </Grid.Column>
         </Grid.Row>
+        {node.childNodes &&
+          node.childNodes.map((childNode, index) => (
+            <TaxonomyChildrenDefinitionCard
+              node={childNode}
+              key={childNode.nodeName}
+              index={index}
+              parentIndex={this.props.index}
+              saveChildNodeName={this.props.saveChildNodeName}
+            />
+          ))}
+        <TaxonomyChildrenDefinitionCard
+          node={{}}
+          index={null}
+          saveChildNodeName={this.props.saveChildNodeName}
+          parentIndex={this.props.index}
+        />
       </Grid>
     );
   }
@@ -58,6 +76,8 @@ NodeDescriptionCard.propTypes = {
   node: PropTypes.object,
   nodeOptions: PropTypes.object,
   onSaveNodeName: PropTypes.func,
+  index: PropTypes.number,
+  saveChildNodeName: PropTypes.func,
 };
 
 export default NodeDescriptionCard;
