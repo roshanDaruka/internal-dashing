@@ -22,6 +22,7 @@
     "preinstall": "npm run npmcheckversion",
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+    "build:github": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.githubPages.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
     "start": "cross-env NODE_ENV=development node server",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
@@ -44,7 +45,7 @@
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write",
-    "deploy" : "npm run build && gh-pages -d build"
+    "deploy" : "npm run build:github && gh-pages -d build"
   },
   "lint-staged": {
     "*.js": [

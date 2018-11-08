@@ -18,6 +18,7 @@ module.exports = require('./webpack.base.babel')({
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
+    publicPath: '/internal-dashing/',
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].chunk.js',
   },
@@ -93,6 +94,7 @@ module.exports = require('./webpack.base.babel')({
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
     new OfflinePlugin({
       relativePaths: false,
+      publicPath: '/internal-dashing/',
       appShell: '/',
 
       // No need to cache .htaccess. See http://mxs.is/googmp,
